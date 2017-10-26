@@ -1,0 +1,2919 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://faxcoreserver/services/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://faxcoreserver/services/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://faxcoreserver/services/">
+      <s:element name="AuthenticateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthenticateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthenticateUserResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServerStatus">
+        <s:complexType />
+      </s:element>
+      <s:element name="ServerStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServerStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendCompleteMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderCompName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="note" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="scheduleDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="priority" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isOnHold" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="mss" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="msf" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackLabel" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackValue" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpCompName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpAddress" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpRawFax" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpNotifyAddr" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpIsRRFOn" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpIsRRSOn" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentPath" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentBytes" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentIsMerge" type="tns:ArrayOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="boolean" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendCompleteMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendCompleteMessageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendMixedMode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderCompName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="note" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="priority" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="scheduleDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isOnHold" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="mss" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="msf" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="useDefaultNotify" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="useDefaultCP" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="documents" type="tns:ArrayOfMsgDocument" />
+            <s:element minOccurs="0" maxOccurs="1" name="recipients" type="tns:ArrayOfMsgRecipient" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackings" type="tns:ArrayOfMsgTracking" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfMsgDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MsgDocument" nillable="true" type="tns:MsgDocument" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MsgDocument">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Path" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bytes" type="s:base64Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsMerge" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="RemoveFirstPage" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="OverlayTemplateName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMsgRecipient">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MsgRecipient" nillable="true" type="tns:MsgRecipient" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MsgRecipient">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CompName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AddressType" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="NotifyAddress" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsRRFOn" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsRRSOn" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMsgTracking">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MsgTracking" nillable="true" type="tns:MsgTracking" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MsgTracking">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TrackLabel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TrackValue" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TrackID" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendMixedModeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendMixedModeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BasicSendMessageWithBytes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderCompName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="note" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackLabel" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackValue" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpAddress" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpRawFax" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentBytes" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentIsMerge" type="tns:ArrayOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BasicSendMessageWithBytesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BasicSendMessageWithBytesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendCompleteMessageWithPresetAgents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderCompName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="note" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="scheduleDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="priority" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isOnHold" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="mss" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="msf" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackLabel" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackValue" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpCompName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpAddress" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpRawFax" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpNotifyAddr" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpIsRRFOn" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpIsRRSOn" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentPath" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentBytes" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentIsMerge" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="agentID" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="presetType" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="presetValue" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendCompleteMessageWithPresetAgentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendCompleteMessageWithPresetAgentsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendCompleteMessageWithPresetAgentsAndByPassRender">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderCompName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="note" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="scheduleDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="priority" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isOnHold" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="mss" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="msf" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackLabel" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackValue" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpCompName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpAddress" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpRawFax" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpNotifyAddr" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpIsRRFOn" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpIsRRSOn" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentPath" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentBytes" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentIsMerge" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="agentID" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="presetType" type="tns:ArrayOfInt" />
+            <s:element minOccurs="0" maxOccurs="1" name="presetValue" type="tns:ArrayOfInt" />
+            <s:element minOccurs="1" maxOccurs="1" name="byPassRender" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendCompleteMessageWithPresetAgentsAndByPassRenderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendCompleteMessageWithPresetAgentsAndByPassRenderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DelegateMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="delegateUserID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="senderCompName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="note" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="scheduleDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="priority" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="isOnHold" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="mss" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="msf" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackLabel" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackValue" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpCompName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpAddress" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpRawFax" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpNotifyAddr" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpIsRRFOn" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="recpIsRRSOn" type="tns:ArrayOfBoolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentName" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentPath" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentBytes" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentIsMerge" type="tns:ArrayOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DelegateMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DelegateMessageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageDetails1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="msgID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageDetails1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageDetails1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageDetails2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="msgID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageDetails2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageDetails2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="msgID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsMessageDeleted">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="messageID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsMessageDeletedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IsMessageDeletedResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="msgID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteMessageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="msgID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelMessageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetryFailed">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="msgID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetryFailedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetryFailedResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ForwardToUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usernames" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ForwardToUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ForwardToUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AssignMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="usernames" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AssignMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AssignMessageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="folderName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isRead" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="sortDescending" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxResults" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageList3Result" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="folderName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isRead" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="startDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="endDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sortDescending" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxResults" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageList2Result" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="folderName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="startDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="endDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sortDescending" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxResults" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageList1Result" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList8">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="folderName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sortDescending" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxResults" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList8Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageList8Result" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList4">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userList" type="tns:ArrayOfLong" />
+            <s:element minOccurs="0" maxOccurs="1" name="folderName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDownloaded" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="sortDescending" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxResults" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetMessageList4Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageList4Result" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList5">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userList" type="tns:ArrayOfLong" />
+            <s:element minOccurs="0" maxOccurs="1" name="folderName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDownloaded" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isRead" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="startDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="endDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sortDescending" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxResults" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList5Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageList5Result" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList6">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userList" type="tns:ArrayOfLong" />
+            <s:element minOccurs="0" maxOccurs="1" name="folderName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDownloaded" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="startDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="endDate" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sortDescending" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxResults" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList6Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageList6Result" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList7">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userList" type="tns:ArrayOfLong" />
+            <s:element minOccurs="0" maxOccurs="1" name="folderName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isDownloaded" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isRead" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="sortDescending" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="maxResults" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMessageList7Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMessageList7Result" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadMessageByte1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="messageID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="deliveryNum" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="downloadType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPageIndex" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadMessageByte1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadMessageByte1Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="output" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadMessageInByte2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="messageID" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="deliveryNum" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="downloadType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="excludePageList" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadMessageInByte2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadMessageInByte2Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="output" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadMessageInByte3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="deliveryID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="downloadType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPageIndex" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadMessageInByte3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadMessageInByte3Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="output" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadMessageInByte4">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="deliveryID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="downloadType" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startPageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="excludePageList" type="tns:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DownloadMessageInByte4Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DownloadMessageInByte4Result" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="output" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkMsgAsRead">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkMsgAsReadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MarkMsgAsReadResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkMsgAsUnread">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkMsgAsUnreadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MarkMsgAsUnreadResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsMessageRead">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsMessageReadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsMessageReadResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkMsgAsDownloaded">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="msgID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MarkMsgAsDownloadedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MarkMsgAsDownloadedResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTrackRecords">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="msgID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTrackRecordsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTrackRecordsResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTrackRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="msgID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="trackID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="trackValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateTrackRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateTrackRecordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MoveMessage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="msgID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="newFolderName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MoveMessageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MoveMessageResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewUser1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="domainName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="role" type="tns:Role" />
+            <s:element minOccurs="1" maxOccurs="1" name="isExternalAuth" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isActive" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="displayName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="middleName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="preferAddrType" type="tns:AddressType" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rawFax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="desc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="Role">
+        <s:restriction base="s:string">
+          <s:enumeration value="SystemAdmin" />
+          <s:enumeration value="DomainAdmin" />
+          <s:enumeration value="SuperUser" />
+          <s:enumeration value="StandardUser" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="AddressType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Fax" />
+          <s:enumeration value="Email" />
+          <s:enumeration value="FaxRaw" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreateNewUser1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNewUser1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewUser2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="domainName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="role" type="tns:Role" />
+            <s:element minOccurs="1" maxOccurs="1" name="isExternalAuth" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isActive" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="displayName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="middleName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="preferAddrType" type="tns:AddressType" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rawFax" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="NOR" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="NOS" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="desc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewUser2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNewUser2Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewUser3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="domainName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="role" type="tns:Role" />
+            <s:element minOccurs="1" maxOccurs="1" name="isExternalAuth" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isActive" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="displayName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="middleName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="preferAddrType" type="tns:AddressType" />
+            <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fax" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rawFax" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="NOR" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="NOS" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="callerID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="csid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateNewUser3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateNewUser3Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUser-basic">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="role" type="tns:Role" />
+            <s:element minOccurs="1" maxOccurs="1" name="isExternalAuth" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isActive" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="displayName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="middleName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="preferAddrType" type="tns:AddressType" />
+            <s:element minOccurs="0" maxOccurs="1" name="desc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUser-basicResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateUser-basicResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUser-extra">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="role" type="tns:Role" />
+            <s:element minOccurs="1" maxOccurs="1" name="isExternalAuth" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isActive" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="displayName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="middleName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="preferAddrType" type="tns:AddressType" />
+            <s:element minOccurs="0" maxOccurs="1" name="desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="localCSID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="callerID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUser-extraResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateUser-extraResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateUser-advance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="role" type="tns:Role" />
+            <s:element minOccurs="1" maxOccurs="1" name="isExternalAuth" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isActive" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="displayName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="middleName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="preferAddrType" type="tns:AddressType" />
+            <s:element minOccurs="0" maxOccurs="1" name="desc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="config" type="tns:ArrayOfUserConfig" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfUserConfig">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UserConfig" nillable="true" type="tns:UserConfig" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UserConfig">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ConfigName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ConfigValue" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateUser-advanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateUser-advanceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoveUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeactivateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeactivateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeactivateUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeactivateUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="userIDList" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeactivateUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeactivateUsersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActivateUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateUsers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="userIDList" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActivateUsersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActivateUsersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserListWithDomainID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="domainID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserListWithDomainIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserListWithDomainIDResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserListWithDomainName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="domainName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserListWithDomainNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserListWithDomainNameResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetailsByUserID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetailsByUserIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDetailsByUserIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetailsByUserName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetailsByUserNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDetailsByUserNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateInboundRoute">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="forwardedUserName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="condition1" type="tns:ConditionType" />
+            <s:element minOccurs="0" maxOccurs="1" name="conditionExp1" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isAndOperator" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="condition2" type="tns:ConditionType" />
+            <s:element minOccurs="0" maxOccurs="1" name="conditionExp2" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isActive" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="priority" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ConditionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="BarCode" />
+          <s:enumeration value="FaxPortNo" />
+          <s:enumeration value="RoutingDigits" />
+          <s:enumeration value="RemoteCallerID" />
+          <s:enumeration value="RemoteCSID" />
+          <s:enumeration value="ServerName" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CreateInboundRouteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateInboundRouteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchIBRouteRules">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="input" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchIBRouteRulesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchIBRouteRulesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisabledInboudRoute">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="routeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DisabledInboudRouteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DisabledInboudRouteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMsgFolders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMsgFoldersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMsgFoldersResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDomainList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDomainListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDomainListResult" type="tns:ArrayOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserFaxSettingByUserID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="userID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserFaxSettingByUserIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserFaxSettingByUserIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserFaxSettingByUserName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adminID" type="s:long" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserFaxSettingByUserNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserFaxSettingByUserNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AuthenticateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthenticateUser" />
+  </wsdl:message>
+  <wsdl:message name="AuthenticateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthenticateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServerStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:ServerStatus" />
+  </wsdl:message>
+  <wsdl:message name="ServerStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:ServerStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendCompleteMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:SendCompleteMessage" />
+  </wsdl:message>
+  <wsdl:message name="SendCompleteMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:SendCompleteMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendMixedModeSoapIn">
+    <wsdl:part name="parameters" element="tns:SendMixedMode" />
+  </wsdl:message>
+  <wsdl:message name="SendMixedModeSoapOut">
+    <wsdl:part name="parameters" element="tns:SendMixedModeResponse" />
+  </wsdl:message>
+  <wsdl:message name="BasicSendMessageWithBytesSoapIn">
+    <wsdl:part name="parameters" element="tns:BasicSendMessageWithBytes" />
+  </wsdl:message>
+  <wsdl:message name="BasicSendMessageWithBytesSoapOut">
+    <wsdl:part name="parameters" element="tns:BasicSendMessageWithBytesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendCompleteMessageWithPresetAgentsSoapIn">
+    <wsdl:part name="parameters" element="tns:SendCompleteMessageWithPresetAgents" />
+  </wsdl:message>
+  <wsdl:message name="SendCompleteMessageWithPresetAgentsSoapOut">
+    <wsdl:part name="parameters" element="tns:SendCompleteMessageWithPresetAgentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendCompleteMessageWithPresetAgentsAndByPassRenderSoapIn">
+    <wsdl:part name="parameters" element="tns:SendCompleteMessageWithPresetAgentsAndByPassRender" />
+  </wsdl:message>
+  <wsdl:message name="SendCompleteMessageWithPresetAgentsAndByPassRenderSoapOut">
+    <wsdl:part name="parameters" element="tns:SendCompleteMessageWithPresetAgentsAndByPassRenderResponse" />
+  </wsdl:message>
+  <wsdl:message name="DelegateMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:DelegateMessage" />
+  </wsdl:message>
+  <wsdl:message name="DelegateMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:DelegateMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageDetails1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageDetails1" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageDetails1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageDetails1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageDetails2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageDetails2" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageDetails2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageDetails2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsMessageDeletedSoapIn">
+    <wsdl:part name="parameters" element="tns:IsMessageDeleted" />
+  </wsdl:message>
+  <wsdl:message name="IsMessageDeletedSoapOut">
+    <wsdl:part name="parameters" element="tns:IsMessageDeletedResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteMessage" />
+  </wsdl:message>
+  <wsdl:message name="DeleteMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelMessage" />
+  </wsdl:message>
+  <wsdl:message name="CancelMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetryFailedSoapIn">
+    <wsdl:part name="parameters" element="tns:RetryFailed" />
+  </wsdl:message>
+  <wsdl:message name="RetryFailedSoapOut">
+    <wsdl:part name="parameters" element="tns:RetryFailedResponse" />
+  </wsdl:message>
+  <wsdl:message name="ForwardToUserSoapIn">
+    <wsdl:part name="parameters" element="tns:ForwardToUser" />
+  </wsdl:message>
+  <wsdl:message name="ForwardToUserSoapOut">
+    <wsdl:part name="parameters" element="tns:ForwardToUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="AssignMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:AssignMessage" />
+  </wsdl:message>
+  <wsdl:message name="AssignMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:AssignMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList3SoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageList3" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList3SoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageList3Response" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageList2" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageList2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageList1" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageList1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList8SoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageList8" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList8SoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageList8Response" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList4SoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageList4" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList4SoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageList4Response" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList5SoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageList5" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList5SoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageList5Response" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList6SoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageList6" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList6SoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageList6Response" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList7SoapIn">
+    <wsdl:part name="parameters" element="tns:GetMessageList7" />
+  </wsdl:message>
+  <wsdl:message name="GetMessageList7SoapOut">
+    <wsdl:part name="parameters" element="tns:GetMessageList7Response" />
+  </wsdl:message>
+  <wsdl:message name="DownloadMessageByte1SoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadMessageByte1" />
+  </wsdl:message>
+  <wsdl:message name="DownloadMessageByte1SoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadMessageByte1Response" />
+  </wsdl:message>
+  <wsdl:message name="DownloadMessageInByte2SoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadMessageInByte2" />
+  </wsdl:message>
+  <wsdl:message name="DownloadMessageInByte2SoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadMessageInByte2Response" />
+  </wsdl:message>
+  <wsdl:message name="DownloadMessageInByte3SoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadMessageInByte3" />
+  </wsdl:message>
+  <wsdl:message name="DownloadMessageInByte3SoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadMessageInByte3Response" />
+  </wsdl:message>
+  <wsdl:message name="DownloadMessageInByte4SoapIn">
+    <wsdl:part name="parameters" element="tns:DownloadMessageInByte4" />
+  </wsdl:message>
+  <wsdl:message name="DownloadMessageInByte4SoapOut">
+    <wsdl:part name="parameters" element="tns:DownloadMessageInByte4Response" />
+  </wsdl:message>
+  <wsdl:message name="MarkMsgAsReadSoapIn">
+    <wsdl:part name="parameters" element="tns:MarkMsgAsRead" />
+  </wsdl:message>
+  <wsdl:message name="MarkMsgAsReadSoapOut">
+    <wsdl:part name="parameters" element="tns:MarkMsgAsReadResponse" />
+  </wsdl:message>
+  <wsdl:message name="MarkMsgAsUnreadSoapIn">
+    <wsdl:part name="parameters" element="tns:MarkMsgAsUnread" />
+  </wsdl:message>
+  <wsdl:message name="MarkMsgAsUnreadSoapOut">
+    <wsdl:part name="parameters" element="tns:MarkMsgAsUnreadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsMessageReadSoapIn">
+    <wsdl:part name="parameters" element="tns:IsMessageRead" />
+  </wsdl:message>
+  <wsdl:message name="IsMessageReadSoapOut">
+    <wsdl:part name="parameters" element="tns:IsMessageReadResponse" />
+  </wsdl:message>
+  <wsdl:message name="MarkMsgAsDownloadedSoapIn">
+    <wsdl:part name="parameters" element="tns:MarkMsgAsDownloaded" />
+  </wsdl:message>
+  <wsdl:message name="MarkMsgAsDownloadedSoapOut">
+    <wsdl:part name="parameters" element="tns:MarkMsgAsDownloadedResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTrackRecordsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTrackRecords" />
+  </wsdl:message>
+  <wsdl:message name="GetTrackRecordsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTrackRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTrackRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateTrackRecord" />
+  </wsdl:message>
+  <wsdl:message name="UpdateTrackRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateTrackRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="MoveMessageSoapIn">
+    <wsdl:part name="parameters" element="tns:MoveMessage" />
+  </wsdl:message>
+  <wsdl:message name="MoveMessageSoapOut">
+    <wsdl:part name="parameters" element="tns:MoveMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewUser1SoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNewUser1" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewUser1SoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNewUser1Response" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewUser2SoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNewUser2" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewUser2SoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNewUser2Response" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewUser3SoapIn">
+    <wsdl:part name="parameters" element="tns:CreateNewUser3" />
+  </wsdl:message>
+  <wsdl:message name="CreateNewUser3SoapOut">
+    <wsdl:part name="parameters" element="tns:CreateNewUser3Response" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUser-basicSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUser-basic" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUser-basicSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUser-basicResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUser-extraSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUser-extra" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUser-extraSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUser-extraResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUser-advanceSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateUser-advance" />
+  </wsdl:message>
+  <wsdl:message name="UpdateUser-advanceSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateUser-advanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveUserSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveUser" />
+  </wsdl:message>
+  <wsdl:message name="RemoveUserSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeactivateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:DeactivateUser" />
+  </wsdl:message>
+  <wsdl:message name="DeactivateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:DeactivateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeactivateUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:DeactivateUsers" />
+  </wsdl:message>
+  <wsdl:message name="DeactivateUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:DeactivateUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActivateUserSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivateUser" />
+  </wsdl:message>
+  <wsdl:message name="ActivateUserSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActivateUsersSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivateUsers" />
+  </wsdl:message>
+  <wsdl:message name="ActivateUsersSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivateUsersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserListWithDomainIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserListWithDomainID" />
+  </wsdl:message>
+  <wsdl:message name="GetUserListWithDomainIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserListWithDomainIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserListWithDomainNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserListWithDomainName" />
+  </wsdl:message>
+  <wsdl:message name="GetUserListWithDomainNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserListWithDomainNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDetailsByUserIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserDetailsByUserID" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDetailsByUserIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDetailsByUserIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDetailsByUserNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserDetailsByUserName" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDetailsByUserNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDetailsByUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateInboundRouteSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateInboundRoute" />
+  </wsdl:message>
+  <wsdl:message name="CreateInboundRouteSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateInboundRouteResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchIBRouteRulesSoapIn">
+    <wsdl:part name="parameters" element="tns:SearchIBRouteRules" />
+  </wsdl:message>
+  <wsdl:message name="SearchIBRouteRulesSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchIBRouteRulesResponse" />
+  </wsdl:message>
+  <wsdl:message name="DisabledInboudRouteSoapIn">
+    <wsdl:part name="parameters" element="tns:DisabledInboudRoute" />
+  </wsdl:message>
+  <wsdl:message name="DisabledInboudRouteSoapOut">
+    <wsdl:part name="parameters" element="tns:DisabledInboudRouteResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMsgFoldersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMsgFolders" />
+  </wsdl:message>
+  <wsdl:message name="GetMsgFoldersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMsgFoldersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDomainListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDomainList" />
+  </wsdl:message>
+  <wsdl:message name="GetDomainListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDomainListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserFaxSettingByUserIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserFaxSettingByUserID" />
+  </wsdl:message>
+  <wsdl:message name="GetUserFaxSettingByUserIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserFaxSettingByUserIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserFaxSettingByUserNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserFaxSettingByUserName" />
+  </wsdl:message>
+  <wsdl:message name="GetUserFaxSettingByUserNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserFaxSettingByUserNameResponse" />
+  </wsdl:message>
+  <wsdl:portType name="wfApiSoap">
+    <wsdl:operation name="AuthenticateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Authenticate user</wsdl:documentation>
+      <wsdl:input message="tns:AuthenticateUserSoapIn" />
+      <wsdl:output message="tns:AuthenticateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ServerStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check server status.</wsdl:documentation>
+      <wsdl:input message="tns:ServerStatusSoapIn" />
+      <wsdl:output message="tns:ServerStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send message to multiple recipients with multiple documents</wsdl:documentation>
+      <wsdl:input name="SendCompleteMessage" message="tns:SendCompleteMessageSoapIn" />
+      <wsdl:output name="SendCompleteMessage" message="tns:SendCompleteMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMixedMode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send message in mixed mode.</wsdl:documentation>
+      <wsdl:input message="tns:SendMixedModeSoapIn" />
+      <wsdl:output message="tns:SendMixedModeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Basic send message with documents from bytes</wsdl:documentation>
+      <wsdl:input name="BasicSendMessageWithBytes" message="tns:BasicSendMessageWithBytesSoapIn" />
+      <wsdl:output name="BasicSendMessageWithBytes" message="tns:BasicSendMessageWithBytesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send message to multiple recipients with multiple documents</wsdl:documentation>
+      <wsdl:input name="SendCompleteMessageWithPresetAgents" message="tns:SendCompleteMessageWithPresetAgentsSoapIn" />
+      <wsdl:output name="SendCompleteMessageWithPresetAgents" message="tns:SendCompleteMessageWithPresetAgentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send message to multiple recipients with multiple documents</wsdl:documentation>
+      <wsdl:input name="SendCompleteMessageWithPresetAgentsAndByPassRender" message="tns:SendCompleteMessageWithPresetAgentsAndByPassRenderSoapIn" />
+      <wsdl:output name="SendCompleteMessageWithPresetAgentsAndByPassRender" message="tns:SendCompleteMessageWithPresetAgentsAndByPassRenderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DelegateMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send message on behalf of other user</wsdl:documentation>
+      <wsdl:input message="tns:DelegateMessageSoapIn" />
+      <wsdl:output message="tns:DelegateMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets message details in xml string</wsdl:documentation>
+      <wsdl:input name="GetMessageDetails1" message="tns:GetMessageDetails1SoapIn" />
+      <wsdl:output name="GetMessageDetails1" message="tns:GetMessageDetails1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageDetails">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Gets message details in xml string, include read status. Require user ID</wsdl:documentation>
+      <wsdl:input name="GetMessageDetails2" message="tns:GetMessageDetails2SoapIn" />
+      <wsdl:output name="GetMessageDetails2" message="tns:GetMessageDetails2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get message's status.</wsdl:documentation>
+      <wsdl:input message="tns:GetMessageStatusSoapIn" />
+      <wsdl:output message="tns:GetMessageStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsMessageDeleted">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">To check whether the message is being deleted</wsdl:documentation>
+      <wsdl:input message="tns:IsMessageDeletedSoapIn" />
+      <wsdl:output message="tns:IsMessageDeletedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Deletes message.</wsdl:documentation>
+      <wsdl:input message="tns:DeleteMessageSoapIn" />
+      <wsdl:output message="tns:DeleteMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Cancel message active transmission</wsdl:documentation>
+      <wsdl:input message="tns:CancelMessageSoapIn" />
+      <wsdl:output message="tns:CancelMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetryFailed">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retry fail message</wsdl:documentation>
+      <wsdl:input message="tns:RetryFailedSoapIn" />
+      <wsdl:output message="tns:RetryFailedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ForwardToUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Forward message to users</wsdl:documentation>
+      <wsdl:input message="tns:ForwardToUserSoapIn" />
+      <wsdl:output message="tns:ForwardToUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AssignMessage">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Assign message to users</wsdl:documentation>
+      <wsdl:input message="tns:AssignMessageSoapIn" />
+      <wsdl:output message="tns:AssignMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get message list based on folder name and isread/unread.</wsdl:documentation>
+      <wsdl:input name="GetMessageList3" message="tns:GetMessageList3SoapIn" />
+      <wsdl:output name="GetMessageList3" message="tns:GetMessageList3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get message list based on folder name, created date range and is read/unread.</wsdl:documentation>
+      <wsdl:input name="GetMessageList2" message="tns:GetMessageList2SoapIn" />
+      <wsdl:output name="GetMessageList2" message="tns:GetMessageList2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get message list based on folder name and created date range.</wsdl:documentation>
+      <wsdl:input name="GetMessageList1" message="tns:GetMessageList1SoapIn" />
+      <wsdl:output name="GetMessageList1" message="tns:GetMessageList1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get message list based on folder name.</wsdl:documentation>
+      <wsdl:input name="GetMessageList8" message="tns:GetMessageList8SoapIn" />
+      <wsdl:output name="GetMessageList8" message="tns:GetMessageList8SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get message list based on list of users, folder name and whether is downloaded externally</wsdl:documentation>
+      <wsdl:input name="GetMessageList4" message="tns:GetMessageList4SoapIn" />
+      <wsdl:output name="GetMessageList4" message="tns:GetMessageList4SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get message list based on list of users, folder name, whether is downloaded externally, is read, start and end date</wsdl:documentation>
+      <wsdl:input name="GetMessageList5" message="tns:GetMessageList5SoapIn" />
+      <wsdl:output name="GetMessageList5" message="tns:GetMessageList5SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get message list based on list of users, folder name, whether is downloaded externally, start and end date</wsdl:documentation>
+      <wsdl:input name="GetMessageList6" message="tns:GetMessageList6SoapIn" />
+      <wsdl:output name="GetMessageList6" message="tns:GetMessageList6SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get message list based on list of users, folder name, whether is downloaded externally, and is read</wsdl:documentation>
+      <wsdl:input name="GetMessageList7" message="tns:GetMessageList7SoapIn" />
+      <wsdl:output name="GetMessageList7" message="tns:GetMessageList7SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadMessageByte">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Download message's binary with specified message id, delivery number, download type and start page index</wsdl:documentation>
+      <wsdl:input name="DownloadMessageByte1" message="tns:DownloadMessageByte1SoapIn" />
+      <wsdl:output name="DownloadMessageByte1" message="tns:DownloadMessageByte1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadMessageByte">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Download message's binary with specified message id, delivery number, download type, start page index and list of excluded pages</wsdl:documentation>
+      <wsdl:input name="DownloadMessageInByte2" message="tns:DownloadMessageInByte2SoapIn" />
+      <wsdl:output name="DownloadMessageInByte2" message="tns:DownloadMessageInByte2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadMessageByte">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Download message's binary with specified delivery ID, download type and start page index</wsdl:documentation>
+      <wsdl:input name="DownloadMessageInByte3" message="tns:DownloadMessageInByte3SoapIn" />
+      <wsdl:output name="DownloadMessageInByte3" message="tns:DownloadMessageInByte3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadMessageByte">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Download message's binary with specified delivery id, download type, start page index and list of excluded pages</wsdl:documentation>
+      <wsdl:input name="DownloadMessageInByte4" message="tns:DownloadMessageInByte4SoapIn" />
+      <wsdl:output name="DownloadMessageInByte4" message="tns:DownloadMessageInByte4SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkMsgAsRead">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set message to read state</wsdl:documentation>
+      <wsdl:input message="tns:MarkMsgAsReadSoapIn" />
+      <wsdl:output message="tns:MarkMsgAsReadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkMsgAsUnread">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set message to unread state</wsdl:documentation>
+      <wsdl:input message="tns:MarkMsgAsUnreadSoapIn" />
+      <wsdl:output message="tns:MarkMsgAsUnreadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsMessageRead">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return message read status</wsdl:documentation>
+      <wsdl:input message="tns:IsMessageReadSoapIn" />
+      <wsdl:output message="tns:IsMessageReadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MarkMsgAsDownloaded">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set message download status</wsdl:documentation>
+      <wsdl:input message="tns:MarkMsgAsDownloadedSoapIn" />
+      <wsdl:output message="tns:MarkMsgAsDownloadedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackRecords">
+      <wsdl:input message="tns:GetTrackRecordsSoapIn" />
+      <wsdl:output message="tns:GetTrackRecordsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrackRecord">
+      <wsdl:input message="tns:UpdateTrackRecordSoapIn" />
+      <wsdl:output message="tns:UpdateTrackRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MoveMessage">
+      <wsdl:input message="tns:MoveMessageSoapIn" />
+      <wsdl:output message="tns:MoveMessageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create new user with default NOR/NOS=false</wsdl:documentation>
+      <wsdl:input name="CreateNewUser1" message="tns:CreateNewUser1SoapIn" />
+      <wsdl:output name="CreateNewUser1" message="tns:CreateNewUser1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create new user with NOR/NOS values</wsdl:documentation>
+      <wsdl:input name="CreateNewUser2" message="tns:CreateNewUser2SoapIn" />
+      <wsdl:output name="CreateNewUser2" message="tns:CreateNewUser2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create new user with NOR/NOS values,callerID and CSID</wsdl:documentation>
+      <wsdl:input name="CreateNewUser3" message="tns:CreateNewUser3SoapIn" />
+      <wsdl:output name="CreateNewUser3" message="tns:CreateNewUser3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update user with basic profile</wsdl:documentation>
+      <wsdl:input name="UpdateUser-basic" message="tns:UpdateUser-basicSoapIn" />
+      <wsdl:output name="UpdateUser-basic" message="tns:UpdateUser-basicSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update user with basic profile, local CSID, and caller ID</wsdl:documentation>
+      <wsdl:input name="UpdateUser-extra" message="tns:UpdateUser-extraSoapIn" />
+      <wsdl:output name="UpdateUser-extra" message="tns:UpdateUser-extraSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Update user with basic profile, and user's config</wsdl:documentation>
+      <wsdl:input name="UpdateUser-advance" message="tns:UpdateUser-advanceSoapIn" />
+      <wsdl:output name="UpdateUser-advance" message="tns:UpdateUser-advanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Delete user from system</wsdl:documentation>
+      <wsdl:input message="tns:RemoveUserSoapIn" />
+      <wsdl:output message="tns:RemoveUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set user to be inactive</wsdl:documentation>
+      <wsdl:input message="tns:DeactivateUserSoapIn" />
+      <wsdl:output message="tns:DeactivateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateUsers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set a list of users to be inactive</wsdl:documentation>
+      <wsdl:input message="tns:DeactivateUsersSoapIn" />
+      <wsdl:output message="tns:DeactivateUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set user to active state</wsdl:documentation>
+      <wsdl:input message="tns:ActivateUserSoapIn" />
+      <wsdl:output message="tns:ActivateUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateUsers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Set a list of users to active state</wsdl:documentation>
+      <wsdl:input message="tns:ActivateUsersSoapIn" />
+      <wsdl:output message="tns:ActivateUsersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <wsdl:input name="GetUserListWithDomainID" message="tns:GetUserListWithDomainIDSoapIn" />
+      <wsdl:output name="GetUserListWithDomainID" message="tns:GetUserListWithDomainIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <wsdl:input name="GetUserListWithDomainName" message="tns:GetUserListWithDomainNameSoapIn" />
+      <wsdl:output name="GetUserListWithDomainName" message="tns:GetUserListWithDomainNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetails">
+      <wsdl:input name="GetUserDetailsByUserID" message="tns:GetUserDetailsByUserIDSoapIn" />
+      <wsdl:output name="GetUserDetailsByUserID" message="tns:GetUserDetailsByUserIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetails">
+      <wsdl:input name="GetUserDetailsByUserName" message="tns:GetUserDetailsByUserNameSoapIn" />
+      <wsdl:output name="GetUserDetailsByUserName" message="tns:GetUserDetailsByUserNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateInboundRoute">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create inbound routing rule</wsdl:documentation>
+      <wsdl:input message="tns:CreateInboundRouteSoapIn" />
+      <wsdl:output message="tns:CreateInboundRouteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchIBRouteRules">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Search inbound routing rules</wsdl:documentation>
+      <wsdl:input message="tns:SearchIBRouteRulesSoapIn" />
+      <wsdl:output message="tns:SearchIBRouteRulesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DisabledInboudRoute">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Disabled inbound routing rule</wsdl:documentation>
+      <wsdl:input message="tns:DisabledInboudRouteSoapIn" />
+      <wsdl:output message="tns:DisabledInboudRouteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMsgFolders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve folders list belong to user</wsdl:documentation>
+      <wsdl:input message="tns:GetMsgFoldersSoapIn" />
+      <wsdl:output message="tns:GetMsgFoldersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDomainList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Retrieve domains belong to domain admin</wsdl:documentation>
+      <wsdl:input message="tns:GetDomainListSoapIn" />
+      <wsdl:output message="tns:GetDomainListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFaxSetting">
+      <wsdl:input name="GetUserFaxSettingByUserID" message="tns:GetUserFaxSettingByUserIDSoapIn" />
+      <wsdl:output name="GetUserFaxSettingByUserID" message="tns:GetUserFaxSettingByUserIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFaxSetting">
+      <wsdl:input name="GetUserFaxSettingByUserName" message="tns:GetUserFaxSettingByUserNameSoapIn" />
+      <wsdl:output name="GetUserFaxSettingByUserName" message="tns:GetUserFaxSettingByUserNameSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="wfApiSoap" type="tns:wfApiSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AuthenticateUser">
+      <soap:operation soapAction="http://faxcoreserver/services/AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServerStatus">
+      <soap:operation soapAction="http://faxcoreserver/services/ServerStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://faxcoreserver/services/SendCompleteMessage" style="document" />
+      <wsdl:input name="SendCompleteMessage">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SendCompleteMessage">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMixedMode">
+      <soap:operation soapAction="http://faxcoreserver/services/SendMixedMode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://faxcoreserver/services/BasicSendMessageWithBytes" style="document" />
+      <wsdl:input name="BasicSendMessageWithBytes">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="BasicSendMessageWithBytes">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://faxcoreserver/services/SendCompleteMessageWithPresetAgents" style="document" />
+      <wsdl:input name="SendCompleteMessageWithPresetAgents">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SendCompleteMessageWithPresetAgents">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://faxcoreserver/services/SendCompleteMessageWithPresetAgentsAndByPassRender" style="document" />
+      <wsdl:input name="SendCompleteMessageWithPresetAgentsAndByPassRender">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SendCompleteMessageWithPresetAgentsAndByPassRender">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DelegateMessage">
+      <soap:operation soapAction="http://faxcoreserver/services/DelegateMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageDetails">
+      <soap:operation soapAction="http://faxcoreserver/services/GetMessageDetails1" style="document" />
+      <wsdl:input name="GetMessageDetails1">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageDetails1">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageDetails">
+      <soap:operation soapAction="http://faxcoreserver/services/GetMessageDetails2" style="document" />
+      <wsdl:input name="GetMessageDetails2">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageDetails2">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageStatus">
+      <soap:operation soapAction="http://faxcoreserver/services/GetMessageStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsMessageDeleted">
+      <soap:operation soapAction="http://faxcoreserver/services/IsMessageDeleted" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessage">
+      <soap:operation soapAction="http://faxcoreserver/services/DeleteMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelMessage">
+      <soap:operation soapAction="http://faxcoreserver/services/CancelMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetryFailed">
+      <soap:operation soapAction="http://faxcoreserver/services/RetryFailed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForwardToUser">
+      <soap:operation soapAction="http://faxcoreserver/services/ForwardToUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssignMessage">
+      <soap:operation soapAction="http://faxcoreserver/services/AssignMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap:operation soapAction="http://faxcoreserver/services/GetMessageList3" style="document" />
+      <wsdl:input name="GetMessageList3">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList3">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap:operation soapAction="http://faxcoreserver/services/GetMessageList2" style="document" />
+      <wsdl:input name="GetMessageList2">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList2">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap:operation soapAction="http://faxcoreserver/services/GetMessageList1" style="document" />
+      <wsdl:input name="GetMessageList1">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList1">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap:operation soapAction="http://faxcoreserver/services/GetMessageList8" style="document" />
+      <wsdl:input name="GetMessageList8">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList8">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap:operation soapAction="http://faxcoreserver/services/GetMessageList4" style="document" />
+      <wsdl:input name="GetMessageList4">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList4">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap:operation soapAction="http://faxcoreserver/services/GetMessageList5" style="document" />
+      <wsdl:input name="GetMessageList5">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList5">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap:operation soapAction="http://faxcoreserver/services/GetMessageList6" style="document" />
+      <wsdl:input name="GetMessageList6">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList6">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap:operation soapAction="http://faxcoreserver/services/GetMessageList7" style="document" />
+      <wsdl:input name="GetMessageList7">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList7">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadMessageByte">
+      <soap:operation soapAction="http://faxcoreserver/services/DownloadMessageByte1" style="document" />
+      <wsdl:input name="DownloadMessageByte1">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DownloadMessageByte1">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadMessageByte">
+      <soap:operation soapAction="http://faxcoreserver/services/DownloadMessageInByte2" style="document" />
+      <wsdl:input name="DownloadMessageInByte2">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DownloadMessageInByte2">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadMessageByte">
+      <soap:operation soapAction="http://faxcoreserver/services/DownloadMessageInByte3" style="document" />
+      <wsdl:input name="DownloadMessageInByte3">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DownloadMessageInByte3">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadMessageByte">
+      <soap:operation soapAction="http://faxcoreserver/services/DownloadMessageInByte4" style="document" />
+      <wsdl:input name="DownloadMessageInByte4">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DownloadMessageInByte4">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkMsgAsRead">
+      <soap:operation soapAction="http://faxcoreserver/services/MarkMsgAsRead" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkMsgAsUnread">
+      <soap:operation soapAction="http://faxcoreserver/services/MarkMsgAsUnread" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsMessageRead">
+      <soap:operation soapAction="http://faxcoreserver/services/IsMessageRead" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkMsgAsDownloaded">
+      <soap:operation soapAction="http://faxcoreserver/services/MarkMsgAsDownloaded" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackRecords">
+      <soap:operation soapAction="http://faxcoreserver/services/GetTrackRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrackRecord">
+      <soap:operation soapAction="http://faxcoreserver/services/UpdateTrackRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveMessage">
+      <soap:operation soapAction="http://faxcoreserver/services/MoveMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://faxcoreserver/services/CreateNewUser1" style="document" />
+      <wsdl:input name="CreateNewUser1">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateNewUser1">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://faxcoreserver/services/CreateNewUser2" style="document" />
+      <wsdl:input name="CreateNewUser2">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateNewUser2">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap:operation soapAction="http://faxcoreserver/services/CreateNewUser3" style="document" />
+      <wsdl:input name="CreateNewUser3">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateNewUser3">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://faxcoreserver/services/UpdateUser-basic" style="document" />
+      <wsdl:input name="UpdateUser-basic">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateUser-basic">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://faxcoreserver/services/UpdateUser-extra" style="document" />
+      <wsdl:input name="UpdateUser-extra">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateUser-extra">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap:operation soapAction="http://faxcoreserver/services/UpdateUser-advance" style="document" />
+      <wsdl:input name="UpdateUser-advance">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateUser-advance">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUser">
+      <soap:operation soapAction="http://faxcoreserver/services/RemoveUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateUser">
+      <soap:operation soapAction="http://faxcoreserver/services/DeactivateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateUsers">
+      <soap:operation soapAction="http://faxcoreserver/services/DeactivateUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateUser">
+      <soap:operation soapAction="http://faxcoreserver/services/ActivateUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateUsers">
+      <soap:operation soapAction="http://faxcoreserver/services/ActivateUsers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <soap:operation soapAction="http://faxcoreserver/services/GetUserListWithDomainID" style="document" />
+      <wsdl:input name="GetUserListWithDomainID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserListWithDomainID">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <soap:operation soapAction="http://faxcoreserver/services/GetUserListWithDomainName" style="document" />
+      <wsdl:input name="GetUserListWithDomainName">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserListWithDomainName">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetails">
+      <soap:operation soapAction="http://faxcoreserver/services/GetUserDetailsByUserID" style="document" />
+      <wsdl:input name="GetUserDetailsByUserID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserDetailsByUserID">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetails">
+      <soap:operation soapAction="http://faxcoreserver/services/GetUserDetailsByUserName" style="document" />
+      <wsdl:input name="GetUserDetailsByUserName">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserDetailsByUserName">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateInboundRoute">
+      <soap:operation soapAction="http://faxcoreserver/services/CreateInboundRoute" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchIBRouteRules">
+      <soap:operation soapAction="http://faxcoreserver/services/SearchIBRouteRules" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisabledInboudRoute">
+      <soap:operation soapAction="http://faxcoreserver/services/DisabledInboudRoute" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMsgFolders">
+      <soap:operation soapAction="http://faxcoreserver/services/GetMsgFolders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDomainList">
+      <soap:operation soapAction="http://faxcoreserver/services/GetDomainList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFaxSetting">
+      <soap:operation soapAction="http://faxcoreserver/services/GetUserFaxSettingByUserID" style="document" />
+      <wsdl:input name="GetUserFaxSettingByUserID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserFaxSettingByUserID">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFaxSetting">
+      <soap:operation soapAction="http://faxcoreserver/services/GetUserFaxSettingByUserName" style="document" />
+      <wsdl:input name="GetUserFaxSettingByUserName">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserFaxSettingByUserName">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="wfApiSoap12" type="tns:wfApiSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AuthenticateUser">
+      <soap12:operation soapAction="http://faxcoreserver/services/AuthenticateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ServerStatus">
+      <soap12:operation soapAction="http://faxcoreserver/services/ServerStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="http://faxcoreserver/services/SendCompleteMessage" style="document" />
+      <wsdl:input name="SendCompleteMessage">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SendCompleteMessage">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMixedMode">
+      <soap12:operation soapAction="http://faxcoreserver/services/SendMixedMode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="http://faxcoreserver/services/BasicSendMessageWithBytes" style="document" />
+      <wsdl:input name="BasicSendMessageWithBytes">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="BasicSendMessageWithBytes">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="http://faxcoreserver/services/SendCompleteMessageWithPresetAgents" style="document" />
+      <wsdl:input name="SendCompleteMessageWithPresetAgents">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SendCompleteMessageWithPresetAgents">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendMessage">
+      <soap12:operation soapAction="http://faxcoreserver/services/SendCompleteMessageWithPresetAgentsAndByPassRender" style="document" />
+      <wsdl:input name="SendCompleteMessageWithPresetAgentsAndByPassRender">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="SendCompleteMessageWithPresetAgentsAndByPassRender">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DelegateMessage">
+      <soap12:operation soapAction="http://faxcoreserver/services/DelegateMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageDetails">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetMessageDetails1" style="document" />
+      <wsdl:input name="GetMessageDetails1">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageDetails1">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageDetails">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetMessageDetails2" style="document" />
+      <wsdl:input name="GetMessageDetails2">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageDetails2">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageStatus">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetMessageStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsMessageDeleted">
+      <soap12:operation soapAction="http://faxcoreserver/services/IsMessageDeleted" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMessage">
+      <soap12:operation soapAction="http://faxcoreserver/services/DeleteMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelMessage">
+      <soap12:operation soapAction="http://faxcoreserver/services/CancelMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetryFailed">
+      <soap12:operation soapAction="http://faxcoreserver/services/RetryFailed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ForwardToUser">
+      <soap12:operation soapAction="http://faxcoreserver/services/ForwardToUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AssignMessage">
+      <soap12:operation soapAction="http://faxcoreserver/services/AssignMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetMessageList3" style="document" />
+      <wsdl:input name="GetMessageList3">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList3">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetMessageList2" style="document" />
+      <wsdl:input name="GetMessageList2">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList2">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetMessageList1" style="document" />
+      <wsdl:input name="GetMessageList1">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList1">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetMessageList8" style="document" />
+      <wsdl:input name="GetMessageList8">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList8">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetMessageList4" style="document" />
+      <wsdl:input name="GetMessageList4">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList4">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetMessageList5" style="document" />
+      <wsdl:input name="GetMessageList5">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList5">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetMessageList6" style="document" />
+      <wsdl:input name="GetMessageList6">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList6">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMessageList">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetMessageList7" style="document" />
+      <wsdl:input name="GetMessageList7">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetMessageList7">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadMessageByte">
+      <soap12:operation soapAction="http://faxcoreserver/services/DownloadMessageByte1" style="document" />
+      <wsdl:input name="DownloadMessageByte1">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DownloadMessageByte1">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadMessageByte">
+      <soap12:operation soapAction="http://faxcoreserver/services/DownloadMessageInByte2" style="document" />
+      <wsdl:input name="DownloadMessageInByte2">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DownloadMessageInByte2">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadMessageByte">
+      <soap12:operation soapAction="http://faxcoreserver/services/DownloadMessageInByte3" style="document" />
+      <wsdl:input name="DownloadMessageInByte3">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DownloadMessageInByte3">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadMessageByte">
+      <soap12:operation soapAction="http://faxcoreserver/services/DownloadMessageInByte4" style="document" />
+      <wsdl:input name="DownloadMessageInByte4">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="DownloadMessageInByte4">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkMsgAsRead">
+      <soap12:operation soapAction="http://faxcoreserver/services/MarkMsgAsRead" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkMsgAsUnread">
+      <soap12:operation soapAction="http://faxcoreserver/services/MarkMsgAsUnread" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsMessageRead">
+      <soap12:operation soapAction="http://faxcoreserver/services/IsMessageRead" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkMsgAsDownloaded">
+      <soap12:operation soapAction="http://faxcoreserver/services/MarkMsgAsDownloaded" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTrackRecords">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetTrackRecords" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateTrackRecord">
+      <soap12:operation soapAction="http://faxcoreserver/services/UpdateTrackRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MoveMessage">
+      <soap12:operation soapAction="http://faxcoreserver/services/MoveMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap12:operation soapAction="http://faxcoreserver/services/CreateNewUser1" style="document" />
+      <wsdl:input name="CreateNewUser1">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateNewUser1">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap12:operation soapAction="http://faxcoreserver/services/CreateNewUser2" style="document" />
+      <wsdl:input name="CreateNewUser2">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateNewUser2">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateUser">
+      <soap12:operation soapAction="http://faxcoreserver/services/CreateNewUser3" style="document" />
+      <wsdl:input name="CreateNewUser3">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="CreateNewUser3">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap12:operation soapAction="http://faxcoreserver/services/UpdateUser-basic" style="document" />
+      <wsdl:input name="UpdateUser-basic">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateUser-basic">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap12:operation soapAction="http://faxcoreserver/services/UpdateUser-extra" style="document" />
+      <wsdl:input name="UpdateUser-extra">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateUser-extra">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateUser">
+      <soap12:operation soapAction="http://faxcoreserver/services/UpdateUser-advance" style="document" />
+      <wsdl:input name="UpdateUser-advance">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="UpdateUser-advance">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUser">
+      <soap12:operation soapAction="http://faxcoreserver/services/RemoveUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateUser">
+      <soap12:operation soapAction="http://faxcoreserver/services/DeactivateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateUsers">
+      <soap12:operation soapAction="http://faxcoreserver/services/DeactivateUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateUser">
+      <soap12:operation soapAction="http://faxcoreserver/services/ActivateUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateUsers">
+      <soap12:operation soapAction="http://faxcoreserver/services/ActivateUsers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetUserListWithDomainID" style="document" />
+      <wsdl:input name="GetUserListWithDomainID">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserListWithDomainID">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetUserListWithDomainName" style="document" />
+      <wsdl:input name="GetUserListWithDomainName">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserListWithDomainName">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetails">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetUserDetailsByUserID" style="document" />
+      <wsdl:input name="GetUserDetailsByUserID">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserDetailsByUserID">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetails">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetUserDetailsByUserName" style="document" />
+      <wsdl:input name="GetUserDetailsByUserName">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserDetailsByUserName">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateInboundRoute">
+      <soap12:operation soapAction="http://faxcoreserver/services/CreateInboundRoute" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchIBRouteRules">
+      <soap12:operation soapAction="http://faxcoreserver/services/SearchIBRouteRules" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisabledInboudRoute">
+      <soap12:operation soapAction="http://faxcoreserver/services/DisabledInboudRoute" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMsgFolders">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetMsgFolders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDomainList">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetDomainList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFaxSetting">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetUserFaxSettingByUserID" style="document" />
+      <wsdl:input name="GetUserFaxSettingByUserID">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserFaxSettingByUserID">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserFaxSetting">
+      <soap12:operation soapAction="http://faxcoreserver/services/GetUserFaxSettingByUserName" style="document" />
+      <wsdl:input name="GetUserFaxSettingByUserName">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetUserFaxSettingByUserName">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wfApi">
+    <wsdl:port name="wfApiSoap" binding="tns:wfApiSoap">
+      <soap:address location="https://co.faxcore.com/webservices/wfapi.asmx" />
+    </wsdl:port>
+    <wsdl:port name="wfApiSoap12" binding="tns:wfApiSoap12">
+      <soap12:address location="https://co.faxcore.com/webservices/wfapi.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

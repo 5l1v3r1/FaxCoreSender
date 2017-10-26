@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="https://co.faxcore.com/webservices/wfapi.asmx?wsdl" docRef="https://co.faxcore.com/webservices/wfapi.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="https://co.faxcore.com/webservices/wfapi.asmx" xmlns:q1="http://faxcoreserver/services/" binding="q1:wfApiSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="https://co.faxcore.com/webservices/wfapi.asmx" xmlns:q2="http://faxcoreserver/services/" binding="q2:wfApiSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

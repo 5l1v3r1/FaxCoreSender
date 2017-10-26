@@ -1,0 +1,7 @@
+C:\Users\LT5244\source\repos\SendFax\SendFax\bin\Debug\SendFax.exe.config
+C:\Users\LT5244\source\repos\SendFax\SendFax\bin\Debug\SendFax.exe
+C:\Users\LT5244\source\repos\SendFax\SendFax\bin\Debug\SendFax.pdb
+C:\Users\LT5244\source\repos\SendFax\SendFax\obj\Debug\SendFax.csprojResolveAssemblyReference.cache
+C:\Users\LT5244\source\repos\SendFax\SendFax\obj\Debug\SendFax.csproj.CoreCompileInputs.cache
+C:\Users\LT5244\source\repos\SendFax\SendFax\obj\Debug\SendFax.exe
+C:\Users\LT5244\source\repos\SendFax\SendFax\obj\Debug\SendFax.pdb
